@@ -5,26 +5,28 @@
 <title>Le match invisible – Sportive</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- AR.js et A-Frame si tu veux garder la scène AR -->
+<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar-nft.js"></script>
+
 <style>
 body{
   margin:0;
   height:100vh;
-  background:linear-gradient(180deg,#1a237e,#000);
   font-family:Arial,sans-serif;
+  background:linear-gradient(180deg,#1a237e,#000);
   color:white;
   text-align:center;
   overflow:hidden;
 }
 
-.container{
-  padding:20px;
-}
-
+/* Texte principal */
 h1{
-  margin-top:30px;
+  margin-top:20px;
   font-size:1.8em;
 }
 
+/* Card style pour le texte */
 .card{
   background:rgba(255,255,255,0.12);
   border-radius:16px;
@@ -34,6 +36,7 @@ h1{
   box-shadow:0 6px 20px rgba(0,0,0,0.6);
 }
 
+/* Boutons choix */
 .choice{
   margin-top:15px;
   padding:16px;
@@ -49,6 +52,7 @@ h1{
   transform:scale(1.05);
 }
 
+/* Résultat final */
 .result{
   display:none;
   margin-top:30px;
@@ -59,16 +63,41 @@ h1{
   color:#ff80ab;
   font-weight:bold;
 }
+
+/* BOUTON vers mur des clichés */
+#goCliches {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e91e63;
+  color: white;
+  padding: 18px 26px;
+  border-radius: 40px;
+  font-size: 18px;
+  font-weight: bold;
+  z-index: 9999;
+  cursor: pointer;
+  pointer-events: auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
 </style>
 </head>
 
 <body>
 
-<div class="container">
-
-<h1>🏃‍♀️ Tu es une sportive</h1>
+<!-- SCENE AR si nécessaire -->
+<a-scene
+  vr-mode-ui="enabled: false"
+  embedded
+  arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
+>
+  <a-entity camera></a-entity>
+  <!-- Ici tu peux ajouter un marker ou image AR si besoin -->
+</a-scene>
 
 <div class="card">
+  <h1>🏃‍♀️ Tu es une sportive</h1>
   <p>
     Tu t’entraînes autant que les hommes.<br>
     Tu fais les mêmes compétitions.<br><br>
@@ -109,11 +138,18 @@ h1{
   </div>
 </div>
 
+<!-- BOUTON VERS MUR DES CLICHÉS -->
+<div id="goCliches" onclick="goCliches()">
+  💥 Casser les clichés
 </div>
 
 <script>
 function showResult(){
   document.getElementById("result").style.display="block";
+}
+
+function goCliches(){
+  window.location.href = "cliches.html";
 }
 </script>
 
