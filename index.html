@@ -1,85 +1,113 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <title>Le match invisible – Choisis ton rôle</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<title>Le match invisible – Choisis ton rôle</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      height: 100vh;
-      background: linear-gradient(135deg, #8e24aa, #f06292);
-      color: white;
-      overflow: hidden;
-      position: relative;
-    }
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:linear-gradient(135deg,#7b1fa2,#ec407a);
+  font-family:Arial,sans-serif;
+  color:white;
+  overflow:hidden;
+}
 
-    h1 {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 2em;
-      text-shadow: 2px 2px 5px #000;
-    }
+h1{
+  text-align:center;
+  margin-top:15px;
+  font-size:2em;
+  text-shadow:2px 2px 6px #000;
+}
 
-    p {
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 1.1em;
-    }
+p{
+  text-align:center;
+  margin-bottom:10px;
+  font-size:1.1em;
+}
 
-    .btn {
-      position: absolute;
-      cursor: pointer;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 3px solid rgba(255,255,255,0.4);
-      transition: transform 0.3s, box-shadow 0.3s;
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    }
+/* BOUTONS */
+.btn{
+  position:absolute;
+  width:130px;
+  height:130px;
+  border-radius:50%;
+  background-size:cover;
+  background-position:center;
+  border:3px solid rgba(255,255,255,0.7);
+  box-shadow:0 6px 15px rgba(0,0,0,0.5);
+  cursor:pointer;
+  animation:float 3.5s ease-in-out infinite;
+  transition:transform .3s;
+}
 
-    .btn:hover {
-      transform: scale(1.2);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-    }
+.btn:hover{
+  transform:scale(1.15);
+}
 
-    /* Placement ludique */
-    #sportive { top: 15%; left: 10%; background-image: url('ballon_foot.png'); }
-    #media { top: 20%; right: 10%; background-image: url('camera.png'); }
-    #institution { bottom: 20%; left: 15%; background-image: url('raquette_tennis.png'); }
-    #public { bottom: 15%; right: 15%; background-image: url('ballon_basket.png'); }
+/* LABEL */
+.label{
+  position:absolute;
+  bottom:-28px;
+  width:100%;
+  text-align:center;
+  font-weight:bold;
+  text-shadow:2px 2px 4px #000;
+}
 
-    /* Image de fond décorative */
-    .background-img {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: auto;
-      opacity: 0.15;
-      pointer-events: none;
-    }
+/* POSITIONS (ÉTOILE) */
+#sportive{top:22%;left:8%;background-image:url('silhouette_sportive.png');}
+#media{top:22%;right:8%;background-image:url('ballon_foot.png');}
+#palmares{top:45%;left:50%;transform:translateX(-50%);background-image:url('raquette_tennis.png');}
+#institution{bottom:18%;left:12%;background-image:url('halteres.png');}
+#public{bottom:18%;right:12%;background-image:url('gymnaste.png');}
 
-  </style>
+/* ANIMATION */
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-12px);}
+  100%{transform:translateY(0);}
+}
+
+/* FOND DECORATIF */
+.bg{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  opacity:.12;
+  pointer-events:none;
+}
+</style>
 </head>
 
 <body>
 
-<h1>👀 Qui es-tu aujourd’hui ?</h1>
-<p>Choisis ton rôle et découvre la réalité du sport féminin</p>
+<h1>⚖️ Le match invisible</h1>
+<p>Choisis ton rôle</p>
 
-<!-- Boutons accessoires -->
-<div id="sportive" class="btn" onclick="location.href='sportive.html'"></div>
-<div id="media" class="btn" onclick="location.href='media.html'"></div>
-<div id="institution" class="btn" onclick="location.href='institution.html'"></div>
-<div id="public" class="btn" onclick="location.href='public.html'"></div>
+<div id="sportive" class="btn" onclick="location.href='sportive.html'">
+  <div class="label">Sportive</div>
+</div>
 
-<!-- Fond décoratif -->
-<img src="silhouettes_sportives.png" alt="Sportives en fond" class="background-img">
+<div id="media" class="btn" onclick="location.href='media.html'">
+  <div class="label">Média</div>
+</div>
+
+<div id="palmares" class="btn" onclick="location.href='palmares.html'">
+  <div class="label">Championnes</div>
+</div>
+
+<div id="institution" class="btn" onclick="location.href='institution.html'">
+  <div class="label">Institution</div>
+</div>
+
+<div id="public" class="btn" onclick="location.href='public.html'">
+  <div class="label">Public</div>
+</div>
+
+<img src="fond_sport_feminin.png" class="bg">
 
 </body>
 </html>
