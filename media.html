@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Le match invisible – Média</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:linear-gradient(180deg,#263238,#000);
+  font-family:Arial,sans-serif;
+  color:white;
+  text-align:center;
+}
+
+.container{
+  padding:20px;
+}
+
+h1{
+  margin-top:30px;
+  font-size:1.8em;
+}
+
+.compare{
+  display:flex;
+  justify-content:space-around;
+  margin-top:30px;
+  gap:10px;
+}
+
+.box{
+  width:45%;
+  background:rgba(255,255,255,0.12);
+  border-radius:16px;
+  padding:15px;
+}
+
+.box h2{
+  font-size:1.2em;
+}
+
+.bar{
+  margin-top:10px;
+  height:20px;
+  background:#ff80ab;
+  border-radius:10px;
+}
+
+.bar.small{width:30%;}
+.bar.big{width:80%;}
+
+.choice{
+  margin:20px auto;
+  padding:16px;
+  border-radius:14px;
+  background:rgba(255,255,255,0.2);
+  cursor:pointer;
+  max-width:400px;
+  transition:transform .2s, background .2s;
+}
+
+.choice:hover{
+  background:rgba(255,255,255,0.35);
+  transform:scale(1.05);
+}
+
+.result{
+  display:none;
+  margin-top:30px;
+  font-size:1.1em;
+}
+
+.highlight{
+  color:#ff80ab;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎥 Tu es un média sportif</h1>
+
+<p>Voici le temps d’antenne habituel :</p>
+
+<div class="compare">
+  <div class="box">
+    <h2>Sport masculin</h2>
+    <div class="bar big"></div>
+    <p>Très diffusé</p>
+  </div>
+
+  <div class="box">
+    <h2>Sport féminin</h2>
+    <div class="bar small"></div>
+    <p>Peu diffusé</p>
+  </div>
+</div>
+
+<p>Que décides-tu de diffuser aujourd’hui ?</p>
+
+<div class="choice" onclick="showResult()">
+  📺 Diffuser le sport féminin
+</div>
+
+<div class="choice" onclick="showResult()">
+  ❌ Ne pas le diffuser
+</div>
+
+<div id="result" class="choice result">
+  <p class="highlight">
+    Ce que tu montres existe.<br>
+    Ce que tu ignores disparaît.
+  </p>
+
+  <p>
+    Moins de diffusion = moins de sponsors = moins de moyens.
+  </p>
+
+  <div class="choice" onclick="location.href='index.html'">
+    ⬅️ Retour aux rôles
+  </div>
+</div>
+
+</div>
+
+<script>
+function showResult(){
+  document.getElementById("result").style.display="block";
+}
+</script>
+
+</body>
+</html>
