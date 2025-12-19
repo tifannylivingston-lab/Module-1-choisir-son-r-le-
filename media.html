@@ -5,33 +5,25 @@
 <title>Le match invisible – Média</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- AR.js et A-Frame si tu veux garder la scène AR -->
-<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar-nft.js"></script>
-
 <style>
 body{
   margin:0;
   height:100vh;
-  font-family:Arial,sans-serif;
   background:linear-gradient(180deg,#263238,#000);
+  font-family:Arial,sans-serif;
   color:white;
   text-align:center;
-  overflow:hidden;
 }
 
-/* Texte principal */
-h1{
-  margin-top:20px;
-  font-size:1.8em;
-}
-
-/* Containers */
 .container{
   padding:20px;
 }
 
-/* Comparaison des barres */
+h1{
+  margin-top:30px;
+  font-size:1.8em;
+}
+
 .compare{
   display:flex;
   justify-content:space-around;
@@ -60,7 +52,6 @@ h1{
 .bar.small{width:30%;}
 .bar.big{width:80%;}
 
-/* Boutons choix */
 .choice{
   margin:20px auto;
   padding:16px;
@@ -76,7 +67,6 @@ h1{
   transform:scale(1.05);
 }
 
-/* Résultat */
 .result{
   display:none;
   margin-top:30px;
@@ -87,37 +77,10 @@ h1{
   color:#ff80ab;
   font-weight:bold;
 }
-
-/* BOUTON vers mur des clichés */
-#goCliches {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #e91e63;
-  color: white;
-  padding: 18px 26px;
-  border-radius: 40px;
-  font-size: 18px;
-  font-weight: bold;
-  z-index: 9999;
-  cursor: pointer;
-  pointer-events: auto;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-}
 </style>
 </head>
 
 <body>
-
-<!-- SCENE AR si nécessaire -->
-<a-scene
-  vr-mode-ui="enabled: false"
-  embedded
-  arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
->
-  <a-entity camera></a-entity>
-</a-scene>
 
 <div class="container">
 
@@ -166,18 +129,9 @@ h1{
 
 </div>
 
-<!-- BOUTON VERS MUR DES CLICHÉS -->
-<div id="goCliches" onclick="goCliches()">
-  💥 Casser les clichés
-</div>
-
 <script>
 function showResult(){
   document.getElementById("result").style.display="block";
-}
-
-function goCliches(){
-  window.location.href = "cliches.html";
 }
 </script>
 
