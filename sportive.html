@@ -1,102 +1,24 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
 <title>Le match invisible – Sportive</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar-nft.js"></script>
-
 <style>
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  overflow:hidden;
-  background:linear-gradient(180deg,#1a237e,#000);
-  color:white;
-  text-align:center;
-}
-
-/* SCENE AR en arrière-plan */
-#aSceneContainer{
-  position:fixed;
-  top:0; left:0;
-  width:100%;
-  height:60%; /* AR réduit à 60% */
-  z-index:1;
-}
-
-/* Overlay des choix */
-#overlay{
-  position:fixed;
-  top:60%;
-  left:0;
-  width:100%;
-  height:40%;
-  background:rgba(0,0,0,0.5);
-  z-index:2;
-  padding-top:20px;
-  box-sizing:border-box;
-}
-
-/* Boutons */
-.choice{
-  display:block;
-  margin:12px auto;
-  padding:16px;
-  border-radius:14px;
-  background:rgba(255,255,255,0.2);
-  cursor:pointer;
-  font-size:1.2em;
-  max-width:300px;
-  transition:transform .2s, background .2s;
-}
-.choice:hover{
-  background:rgba(255,255,255,0.35);
-  transform:scale(1.05);
-}
-
-/* Résultat après choix */
-#result{
-  display:none;
-  margin-top:10px;
-  font-size:1.1em;
-}
-
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#1a237e,#000);color:white;text-align:center;}
+h1{margin-top:20px;font-size:1.8em;}
+.card{background:rgba(255,255,255,0.12);border-radius:16px;padding:20px;margin:30px auto;max-width:500px;box-shadow:0 6px 20px rgba(0,0,0,0.6);}
+.choice{margin-top:15px;padding:16px;border-radius:14px;background:rgba(255,255,255,0.2);cursor:pointer;font-size:1.2em;max-width:300px;transition:transform .2s, background .2s;}
+.choice:hover{background:rgba(255,255,255,0.35);transform:scale(1.05);}
+.result{display:none;margin-top:10px;font-size:1.1em;}
 .highlight{color:#ff80ab;font-weight:bold;}
-
-/* Bouton vers mur des clichés */
-#goCliches{
-  position: fixed;
-  bottom: 20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#e91e63;
-  color:white;
-  padding:18px 26px;
-  border-radius:40px;
-  font-size:18px;
-  font-weight:bold;
-  cursor:pointer;
-  z-index:3;
-  box-shadow:0 8px 20px rgba(0,0,0,0.3);
-}
+#goCliches{position: fixed; bottom: 20px; left:50%; transform:translateX(-50%); background:#e91e63; color:white; padding:18px 26px; border-radius:40px; font-size:18px; font-weight:bold; cursor:pointer; z-index:3; box-shadow:0 8px 20px rgba(0,0,0,0.3);}
 </style>
 </head>
-
 <body>
 
-<!-- SCENE AR -->
-<div id="aSceneContainer">
-<a-scene vr-mode-ui="enabled: false" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
-  <a-entity camera></a-entity>
-  <!-- Tu peux ajouter le marker ou image ici si besoin -->
-</a-scene>
-</div>
-
-<!-- OVERLAY DES CHOIX -->
-<div id="overlay">
+<div class="card">
 <h1>🏃‍♀️ Tu es une sportive</h1>
 <p>Tu t’entraînes autant que les hommes mais tu gagnes X fois moins.</p>
 <p>Que fais-tu ?</p>
@@ -118,7 +40,6 @@ body{
 function showResult(){
   document.getElementById("result").style.display="block";
 }
-
 function goCliches(){
   window.location.href="cliches.html";
 }
