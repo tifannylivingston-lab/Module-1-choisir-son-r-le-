@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Le match invisible – Championnes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(180deg,#4a148c,#000);
+  color:white;
+  text-align:center;
+}
+
+/* Cartes et choix */
+.card{
+  background:rgba(255,255,255,0.12);
+  border-radius:16px;
+  padding:20px;
+  margin:30px auto;
+  max-width:500px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.6);
+}
+.choice{
+  display:block;
+  margin:12px auto;
+  padding:16px;
+  border-radius:14px;
+  background:rgba(255,255,255,0.2);
+  cursor:pointer;
+  font-size:1.2em;
+  max-width:300px;
+  transition:transform .2s, background .2s;
+}
+.choice:hover{
+  background:rgba(255,255,255,0.35);
+  transform:scale(1.05);
+}
+.result{
+  display:none;
+  margin-top:10px;
+  font-size:1.1em;
+}
+.highlight{color:#ff80ab;font-weight:bold;}
+
+/* Bouton retour */
+#goBack{
+  position: fixed;
+  bottom: 20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#e91e63;
+  color:white;
+  padding:18px 26px;
+  border-radius:40px;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+  z-index:3;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h1>🏆 Le panthéon des championnes</h1>
+<p>Touche un portrait pour découvrir son palmarès et son combat personnel.</p>
+
+<div class="choice" onclick="showFact('🎾 Serena Williams : 23 titres du Grand Chelem et bataille pour l’égalité salariale.')">Serena Williams</div>
+<div class="choice" onclick="showFact('⚽ Marta : meilleure buteuse de l’histoire du football féminin, multiple fois Ballon d’or.')">Marta</div>
+<div class="choice" onclick="showFact('🤸 Simone Biles : multiple championne olympique en gymnastique, a brisé les tabous autour de la santé mentale.')">Simone Biles</div>
+<div class="choice" onclick="showFact('🏀 Lisa Leslie : pionnière du basketball féminin américain et mentor de nouvelles générations.')">Lisa Leslie</div>
+
+<div id="result" class="card result"></div>
+
+</div>
+
+<!-- Bouton retour -->
+<div id="goBack" onclick="goBack()">⬅️ Retour aux rôles</div>
+
+<script>
+function showFact(text){
+  var f = document.getElementById('result');
+  f.innerHTML = '<p class="highlight">'+text+'</p>';
+  f.style.display='block';
+}
+
+function goBack(){
+  window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>
