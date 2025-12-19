@@ -2,72 +2,61 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>Le match invisible – Choix du rôle</title>
+  <title>Le match invisible – Choisis ton rôle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, #111827, #000);
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 40px;
+      font-size: 1.8em;
+    }
+
+    .container {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    .btn {
+      padding: 18px;
+      border-radius: 14px;
+      font-size: 1.2em;
+      cursor: pointer;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.3);
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .btn:hover {
+      background: rgba(255,255,255,0.25);
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 
-<body style="margin:0; overflow:hidden;">
+<body>
 
-<a-scene embedded arjs="sourceType: webcam; debugUIEnabled:false;">
-  <a-entity camera></a-entity>
+<h1>👀 Qui es-tu aujourd’hui ?</h1>
+<p>Choisis ton rôle pour découvrir<br>la réalité du sport féminin</p>
 
-  <!-- TITRE -->
-  <a-text
-    value="Qui es-tu aujourd’hui ?"
-    position="0 1.2 -2"
-    align="center"
-    width="4"
-    color="#ffffff">
-  </a-text>
-
-  <!-- SPORTIVE -->
-  <a-text
-    value="🏃‍♀️ Sportive"
-    position="-1 0 -2"
-    align="center"
-    width="2"
-    color="#ff2f92"
-    class="role"
-    onclick="window.location.href='sportive.html'">
-  </a-text>
-
-  <!-- MEDIA -->
-  <a-text
-    value="🎥 Média"
-    position="1 0 -2"
-    align="center"
-    width="2"
-    color="#4fc3f7"
-    class="role"
-    onclick="window.location.href='media.html'">
-  </a-text>
-
-  <!-- INSTITUTION -->
-  <a-text
-    value="🏛️ Institution"
-    position="-1 -0.8 -2"
-    align="center"
-    width="2"
-    color="#ffd54f"
-    class="role"
-    onclick="window.location.href='institution.html'">
-  </a-text>
-
-  <!-- PUBLIC -->
-  <a-text
-    value="👀 Public"
-    position="1 -0.8 -2"
-    align="center"
-    width="2"
-    color="#a5d6a7"
-    class="role"
-    onclick="window.location.href='public.html'">
-  </a-text>
-
-</a-scene>
+<div class="container">
+  <div class="btn" onclick="location.href='sportive.html'">🏃‍♀️ Sportive</div>
+  <div class="btn" onclick="location.href='media.html'">🎥 Média</div>
+  <div class="btn" onclick="location.href='institution.html'">🏛️ Institution</div>
+  <div class="btn" onclick="location.href='public.html'">👀 Public</div>
+</div>
 
 </body>
 </html>
