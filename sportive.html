@@ -5,143 +5,114 @@
 <title>Le match invisible – Sportive</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- AR.js et A-Frame si tu veux garder la scène AR -->
 <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar-nft.js"></script>
 
 <style>
 body{
   margin:0;
-  height:100vh;
   font-family:Arial,sans-serif;
+  overflow:hidden;
   background:linear-gradient(180deg,#1a237e,#000);
   color:white;
   text-align:center;
-  overflow:hidden;
 }
 
-/* Texte principal */
-h1{
-  margin-top:20px;
-  font-size:1.8em;
+/* SCENE AR en arrière-plan */
+#aSceneContainer{
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  height:60%; /* AR réduit à 60% */
+  z-index:1;
 }
 
-/* Card style pour le texte */
-.card{
-  background:rgba(255,255,255,0.12);
-  border-radius:16px;
-  padding:20px;
-  margin:30px auto;
-  max-width:500px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.6);
+/* Overlay des choix */
+#overlay{
+  position:fixed;
+  top:60%;
+  left:0;
+  width:100%;
+  height:40%;
+  background:rgba(0,0,0,0.5);
+  z-index:2;
+  padding-top:20px;
+  box-sizing:border-box;
 }
 
-/* Boutons choix */
+/* Boutons */
 .choice{
-  margin-top:15px;
+  display:block;
+  margin:12px auto;
   padding:16px;
   border-radius:14px;
   background:rgba(255,255,255,0.2);
   cursor:pointer;
-  font-size:1.1em;
+  font-size:1.2em;
+  max-width:300px;
   transition:transform .2s, background .2s;
 }
-
 .choice:hover{
   background:rgba(255,255,255,0.35);
   transform:scale(1.05);
 }
 
-/* Résultat final */
-.result{
+/* Résultat après choix */
+#result{
   display:none;
-  margin-top:30px;
-  font-size:1.2em;
+  margin-top:10px;
+  font-size:1.1em;
 }
 
-.highlight{
-  color:#ff80ab;
-  font-weight:bold;
-}
+.highlight{color:#ff80ab;font-weight:bold;}
 
-/* BOUTON vers mur des clichés */
-#goCliches {
+/* Bouton vers mur des clichés */
+#goCliches{
   position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #e91e63;
-  color: white;
-  padding: 18px 26px;
-  border-radius: 40px;
-  font-size: 18px;
-  font-weight: bold;
-  z-index: 9999;
-  cursor: pointer;
-  pointer-events: auto;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  bottom: 20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#e91e63;
+  color:white;
+  padding:18px 26px;
+  border-radius:40px;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+  z-index:3;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
 }
 </style>
 </head>
 
 <body>
 
-<!-- SCENE AR si nécessaire -->
-<a-scene
-  vr-mode-ui="enabled: false"
-  embedded
-  arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
->
+<!-- SCENE AR -->
+<div id="aSceneContainer">
+<a-scene vr-mode-ui="enabled: false" embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
   <a-entity camera></a-entity>
-  <!-- Ici tu peux ajouter un marker ou image AR si besoin -->
+  <!-- Tu peux ajouter le marker ou image ici si besoin -->
 </a-scene>
-
-<div class="card">
-  <h1>🏃‍♀️ Tu es une sportive</h1>
-  <p>
-    Tu t’entraînes autant que les hommes.<br>
-    Tu fais les mêmes compétitions.<br><br>
-    <span class="highlight">
-    Mais ton salaire est beaucoup plus bas.
-    </span>
-  </p>
-
-  <p>Que fais-tu ?</p>
-
-  <div class="choice" onclick="showResult()">💪 Continuer malgré tout</div>
-  <div class="choice" onclick="showResult()">📢 Se battre pour l’égalité</div>
-  <div class="choice" onclick="showResult()">😔 Abandonner</div>
 </div>
 
-<div id="result" class="card result">
-  <p>
-    Quel que soit ton choix…
-  </p>
+<!-- OVERLAY DES CHOIX -->
+<div id="overlay">
+<h1>🏃‍♀️ Tu es une sportive</h1>
+<p>Tu t’entraînes autant que les hommes mais tu gagnes X fois moins.</p>
+<p>Que fais-tu ?</p>
 
-  <p class="highlight">
-    Le problème ne vient pas de toi.
-  </p>
+<div class="choice" onclick="showResult()">💪 Continuer malgré tout</div>
+<div class="choice" onclick="showResult()">📢 Se battre pour l’égalité</div>
+<div class="choice" onclick="showResult()">😔 Abandonner</div>
 
-  <p>
-    Les règles du sport ont longtemps favorisé les hommes :
-    moins de salaires, moins de visibilité, moins de moyens
-    pour les femmes.
-  </p>
-
-  <p>
-    👉 Ce n’est pas une question de talent.<br>
-    👉 C’est une question de système.
-  </p>
-
-  <div class="choice" onclick="location.href='index.html'">
-    ⬅️ Retour aux rôles
-  </div>
+<div id="result">
+<p>Quel que soit ton choix…</p>
+<p class="highlight">Le problème ne vient pas de toi. C’est le système.</p>
+</div>
 </div>
 
-<!-- BOUTON VERS MUR DES CLICHÉS -->
-<div id="goCliches" onclick="goCliches()">
-  💥 Casser les clichés
-</div>
+<!-- BOUTON VERS CLICHÉS -->
+<div id="goCliches" onclick="goCliches()">💥 Casser les clichés</div>
 
 <script>
 function showResult(){
@@ -149,7 +120,7 @@ function showResult(){
 }
 
 function goCliches(){
-  window.location.href = "cliches.html";
+  window.location.href="cliches.html";
 }
 </script>
 
