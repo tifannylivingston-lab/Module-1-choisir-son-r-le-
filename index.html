@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+/* BASE */
 body{
   margin:0;
   height:100vh;
@@ -28,7 +29,7 @@ p{
   font-size:1.1em;
 }
 
-/* LIENS = BOUTONS */
+/* BOUTONS (liens sûrs) */
 .role{
   position:absolute;
   width:130px;
@@ -36,13 +37,15 @@ p{
   border-radius:50%;
   background-size:cover;
   background-position:center;
-  border:3px solid rgba(255,255,255,0.7);
+  border:3px solid rgba(255,255,255,0.8);
   box-shadow:0 6px 15px rgba(0,0,0,0.5);
   animation:float 3.5s ease-in-out infinite;
   transition:transform .3s;
   text-decoration:none;
+  z-index:10; /* 🔥 CLÉ */
 }
 
+.role:active,
 .role:hover{
   transform:scale(1.15);
 }
@@ -50,20 +53,46 @@ p{
 /* LABEL */
 .label{
   position:absolute;
-  bottom:-28px;
+  bottom:-30px;
   width:100%;
   text-align:center;
   font-weight:bold;
   color:white;
   text-shadow:2px 2px 4px #000;
+  pointer-events:none;
 }
 
 /* POSITIONS */
-#sportive{top:22%;left:8%;background-image:url('silhouette_sportive.png');}
-#media{top:22%;right:8%;background-image:url('ballon_foot.png');}
-#championnes{top:45%;left:50%;margin-left:-65px;background-image:url('raquette_tennis.png');}
-#institution{bottom:18%;left:12%;background-image:url('halteres.png');}
-#public{bottom:18%;right:12%;background-image:url('gymnaste.png');}
+#sportive{
+  top:22%;
+  left:8%;
+  background-image:url('silhouette_sportive.png');
+}
+
+#media{
+  top:22%;
+  right:8%;
+  background-image:url('ballon_foot.png');
+}
+
+#championnes{
+  top:45%;
+  left:50%;
+  margin-left:-65px;
+  background-image:url('raquette_tennis.png');
+}
+
+#institution{
+  bottom:18%;
+  left:12%;
+  background-image:url('halteres.png');
+}
+
+#public{
+  bottom:18%;
+  right:12%;
+  background-image:url('gymnaste.png');
+}
 
 /* ANIMATION */
 @keyframes float{
@@ -72,12 +101,14 @@ p{
   100%{transform:translateY(0);}
 }
 
+/* IMAGE DE FOND */
 .bg{
   position:absolute;
   bottom:0;
   width:100%;
-  opacity:.12;
+  opacity:0.12;
   pointer-events:none;
+  z-index:1; /* 🔽 EN DESSOUS DES BOUTONS */
 }
 </style>
 </head>
@@ -98,6 +129,17 @@ p{
 <a href="championnes.html" class="role" id="championnes">
   <div class="label">Championnes</div>
 </a>
+
+<!-- à activer plus tard -->
+<!--
+<a href="institution.html" class="role" id="institution">
+  <div class="label">Institution</div>
+</a>
+
+<a href="public.html" class="role" id="public">
+  <div class="label">Public</div>
+</a>
+-->
 
 <img src="fond_sport_feminin.png" class="bg">
 
