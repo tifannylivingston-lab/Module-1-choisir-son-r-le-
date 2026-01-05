@@ -6,13 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{
-  margin:0;
-  min-height:100vh;
-  background:linear-gradient(135deg,#512da8,#f06292);
-  font-family:Arial,sans-serif;
-  color:white;
-  text-align:center;
+.card{
+  background:rgba(255,255,255,0.15);
+  border-radius:20px;
+  padding:15px;
+  cursor:pointer;
+  box-shadow:0 6px 15px rgba(0,0,0,0.4);
+  transition:transform .3s, background .3s;
+  position:relative;      /* 🔹 AJOUTÉ */
+  z-index:10;             /* 🔹 AJOUTÉ */
 }
 
 h1{
