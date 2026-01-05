@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le match invisible – Face-à-face</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(135deg,#1a237e,#f06292);
+  font-family:Arial,sans-serif;
+  color:white;
+  text-align:center;
+}
+
+h1{
+  margin:20px 10px 5px;
+  text-shadow:2px 2px 6px #000;
+}
+
+p{
+  margin:5px 15px 20px;
+  font-size:1.1em;
+}
+
+/* CONTENEUR */
+.container{
+  max-width:700px;
+  margin:0 auto;
+  padding:20px;
+}
+
+/* BARRES DE COMPARAISON */
+.compare{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:20px 0;
+}
+
+.bar{
+  width:45%;
+  height:30px;
+  border-radius:15px;
+  background:rgba(255,255,255,0.2);
+  position:relative;
+}
+
+.fill{
+  height:100%;
+  width:0;
+  background:#c2185b;
+  border-radius:15px;
+  transition:width .8s ease;
+  text-align:right;
+  padding-right:5px;
+  box-sizing:border-box;
+  color:white;
+  font-weight:bold;
+}
+
+/* LABELS */
+.label{
+  text-align:center;
+  font-weight:bold;
+  margin-bottom:5px;
+  text-shadow:1px 1px 2px #000;
+}
+
+/* BOUTON */
+.button{
+  display:inline-block;
+  margin:20px auto 30px;
+  padding:12px 20px;
+  border-radius:30px;
+  background:white;
+  color:#c2185b;
+  font-weight:bold;
+  text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>⚖️ Face-à-face final</h1>
+<p>Budget, visibilité et salaire : même sport, mais pas les mêmes moyens</p>
+
+<div class="container">
+  <div class="compare">
+    <div>
+      <div class="label">Hommes</div>
+      <div class="bar"><div class="fill" id="maleBudget">0%</div></div>
+    </div>
+    <div>
+      <div class="label">Femmes</div>
+      <div class="bar"><div class="fill" id="femaleBudget">0%</div></div>
+    </div>
+  </div>
+
+  <div class="compare">
+    <div>
+      <div class="label">Budget</div>
+      <div class="bar"><div class="fill" id="maleBudgetVal">0%</div></div>
+    </div>
+    <div>
+      <div class="label">Budget</div>
+      <div class="bar"><div class="fill" id="femaleBudgetVal">0%</div></div>
+    </div>
+  </div>
+
+  <div class="compare">
+    <div>
+      <div class="label">Visibilité TV</div>
+      <div class="bar"><div class="fill" id="maleVisibility">0%</div></div>
+    </div>
+    <div>
+      <div class="label">Visibilité TV</div>
+      <div class="bar"><div class="fill" id="femaleVisibility">0%</div></div>
+    </div>
+  </div>
+
+  <div class="compare">
+    <div>
+      <div class="label">Salaire</div>
+      <div class="bar"><div class="fill" id="maleSalary">0%</div></div>
+    </div>
+    <div>
+      <div class="label">Salaire</div>
+      <div class="bar"><div class="fill" id="femaleSalary">0%</div></div>
+    </div>
+  </div>
+
+  <p id="message"></p>
+  <a href="index.html" class="button">⬅ Retour aux rôles</a>
+</div>
+
+<script>
+// Valeurs fictives pour illustration
+const data = {
+  budget: {male: 80, female: 20},
+  visibility: {male: 70, female: 30},
+  salary: {male: 85, female: 25}
+};
+
+// Animation des barres
+window.onload = function(){
+  document.getElementById('maleBudget').style.width = data.budget.male + '%';
+  document.getElementById('femaleBudget').style.width = data.budget.female + '%';
+  document.getElementById('maleBudgetVal').style.width = data.budget.male + '%';
+  document.getElementById('femaleBudgetVal').style.width = data.budget.female + '%';
+
+  document.getElementById('maleVisibility').style.width = data.visibility.male + '%';
+  document.getElementById('femaleVisibility').style.width = data.visibility.female + '%';
+
+  document.getElementById('maleSalary').style.width = data.salary.male + '%';
+  document.getElementById('femaleSalary').style.width = data.salary.female + '%';
+
+  document.getElementById('maleBudget').innerText = data.budget.male + '%';
+  document.getElementById('femaleBudget').innerText = data.budget.female + '%';
+  document.getElementById('maleBudgetVal').innerText = data.budget.male + '%';
+  document.getElementById('femaleBudgetVal').innerText = data.budget.female + '%';
+  document.getElementById('maleVisibility').innerText = data.visibility.male + '%';
+  document.getElementById('femaleVisibility').innerText = data.visibility.female + '%';
+  document.getElementById('maleSalary').innerText = data.salary.male + '%';
+  document.getElementById('femaleSalary').innerText = data.salary.female + '%';
+
+  document.getElementById('message').innerText = "💥 Même sport, même niveau, mais pas les mêmes moyens. L’égalité se construit par les choix collectifs et le soutien du public.";
+};
+</script>
+
+</body>
+</html>
