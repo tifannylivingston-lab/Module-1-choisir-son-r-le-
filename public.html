@@ -101,4 +101,76 @@ p{
 
 <body>
 
-<h1>👀 Le r
+<h1>👀 Le rôle du Public</h1>
+<p>Choisis ce que tu fais aujourd’hui :</p>
+
+<div class="grid">
+  <div class="action" onclick="chooseAction(1)">
+    <div class="icon">📺</div>
+    <div class="label">Regarder un match</div>
+  </div>
+  <div class="action" onclick="chooseAction(2)">
+    <div class="icon">📲</div>
+    <div class="label">Partager sur les réseaux</div>
+  </div>
+  <div class="action" onclick="chooseAction(3)">
+    <div class="icon">🗣️</div>
+    <div class="label">En parler aux amis</div>
+  </div>
+  <div class="action" onclick="chooseAction(4)">
+    <div class="icon">😴</div>
+    <div class="label">Ne rien faire</div>
+  </div>
+</div>
+
+<div id="results" style="display:none;">
+  <h2>📊 Conséquences</h2>
+  <div class="result-bar">
+    <div class="result-fill" id="visibilityFill">0%</div>
+  </div>
+  <p id="message"></p>
+  <a href="index.html" class="back">⬅ Retour aux rôles</a>
+</div>
+
+<script>
+function chooseAction(id){
+  const resultsDiv = document.getElementById('results');
+  const fill = document.getElementById('visibilityFill');
+  const message = document.getElementById('message');
+
+  resultsDiv.style.display = 'block';
+
+  let percent = 0;
+  let msg = '';
+
+  switch(id){
+    case 1: // Regarder
+      percent = 60;
+      msg = "🎉 Le sport féminin gagne en visibilité grâce à ton regard !";
+      break;
+    case 2: // Partager
+      percent = 50;
+      msg = "📢 Ton partage aide la diffusion et la visibilité !";
+      break;
+    case 3: // En parler
+      percent = 40;
+      msg = "🗣️ Parler autour de toi augmente doucement l'intérêt.";
+      break;
+    case 4: // Ne rien faire
+      percent = 10;
+      msg = "⚠ La visibilité reste faible si personne ne s'engage.";
+      break;
+  }
+
+  fill.style.width = percent + '%';
+  fill.innerText = percent + '%';
+
+  message.innerText = msg;
+
+  // Scroll automatique vers le résultat
+  resultsDiv.scrollIntoView({behavior:'smooth'});
+}
+</script>
+
+</body>
+</html>
