@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le match invisible – Public</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(135deg,#4a148c,#f06292);
+  font-family:Arial,sans-serif;
+  color:white;
+  text-align:center;
+}
+
+h1{
+  margin:20px 10px 5px;
+  text-shadow:2px 2px 6px #000;
+}
+
+p{
+  margin:5px 15px 20px;
+  font-size:1.1em;
+}
+
+/* GRILLE ACTIONS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:20px;
+  padding:20px;
+  position:relative;
+}
+
+/* BOUTONS / ICÔNES */
+.action{
+  background:rgba(255,255,255,0.15);
+  border-radius:20px;
+  padding:20px;
+  cursor:pointer;
+  box-shadow:0 6px 15px rgba(0,0,0,0.4);
+  transition:transform .3s, background .3s;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.action:hover{
+  transform:scale(1.05);
+  background:rgba(255,255,255,0.25);
+}
+
+.icon{
+  font-size:2.5em;
+  margin-bottom:10px;
+}
+
+.label{
+  font-weight:bold;
+}
+
+/* BARRES DE VISIBILITÉ */
+.result-bar{
+  height:25px;
+  border-radius:15px;
+  background:rgba(255,255,255,0.2);
+  margin:12px 0;
+  position:relative;
+}
+
+.result-fill{
+  height:100%;
+  width:0;
+  background:#c2185b;
+  border-radius:15px;
+  transition:width .8s ease;
+  text-align:right;
+  padding-right:5px;
+  box-sizing:border-box;
+  color:white;
+  font-weight:bold;
+}
+
+/* BOUTON RETOUR */
+.back{
+  margin:20px auto 30px;
+  display:inline-block;
+  padding:12px 20px;
+  border-radius:30px;
+  background:white;
+  color:#c2185b;
+  font-weight:bold;
+  text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>👀 Le r
