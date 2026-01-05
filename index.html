@@ -28,8 +28,8 @@ p{
   font-size:1.1em;
 }
 
-/* BOUTONS */
-.btn{
+/* LIENS = BOUTONS */
+.role{
   position:absolute;
   width:130px;
   height:130px;
@@ -38,12 +38,12 @@ p{
   background-position:center;
   border:3px solid rgba(255,255,255,0.7);
   box-shadow:0 6px 15px rgba(0,0,0,0.5);
-  cursor:pointer;
   animation:float 3.5s ease-in-out infinite;
   transition:transform .3s;
+  text-decoration:none;
 }
 
-.btn:hover{
+.role:hover{
   transform:scale(1.15);
 }
 
@@ -54,13 +54,14 @@ p{
   width:100%;
   text-align:center;
   font-weight:bold;
+  color:white;
   text-shadow:2px 2px 4px #000;
 }
 
 /* POSITIONS */
 #sportive{top:22%;left:8%;background-image:url('silhouette_sportive.png');}
 #media{top:22%;right:8%;background-image:url('ballon_foot.png');}
-#palmares{top:45%;left:50%;transform:translateX(-50%);background-image:url('raquette_tennis.png');}
+#championnes{top:45%;left:50%;margin-left:-65px;background-image:url('raquette_tennis.png');}
 #institution{bottom:18%;left:12%;background-image:url('halteres.png');}
 #public{bottom:18%;right:12%;background-image:url('gymnaste.png');}
 
@@ -71,7 +72,6 @@ p{
   100%{transform:translateY(0);}
 }
 
-/* FOND DECORATIF */
 .bg{
   position:absolute;
   bottom:0;
@@ -87,34 +87,17 @@ p{
 <h1>⚖️ Le match invisible</h1>
 <p>Choisis ton rôle</p>
 
-<!-- SPORTIVE -->
-<div id="sportive" class="btn" onclick="location.href='sportive.html'">
+<a href="sportive.html" class="role" id="sportive">
   <div class="label">Sportive</div>
-</div>
+</a>
 
-<!-- MEDIA -->
-<div id="media" class="btn" onclick="location.href='media.html'">
+<a href="media.html" class="role" id="media">
   <div class="label">Média</div>
-</div>
+</a>
 
-<!-- CHAMPIONNES (CORRIGÉ) -->
-<div id="palmares" class="btn" onclick="location.href='championnes.html'">
+<a href="championnes.html" class="role" id="championnes">
   <div class="label">Championnes</div>
-</div>
-
-<!-- INSTITUTION (à activer quand la page existera) -->
-<!--
-<div id="institution" class="btn" onclick="location.href='institution.html'">
-  <div class="label">Institution</div>
-</div>
--->
-
-<!-- PUBLIC (à activer quand la page existera) -->
-<!--
-<div id="public" class="btn" onclick="location.href='public.html'">
-  <div class="label">Public</div>
-</div>
--->
+</a>
 
 <img src="fond_sport_feminin.png" class="bg">
 
