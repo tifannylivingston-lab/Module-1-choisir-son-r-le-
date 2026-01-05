@@ -110,6 +110,32 @@ p{
   pointer-events:none;
   z-index:1; /* 🔽 EN DESSOUS DES BOUTONS */
 }
+
+  #final{
+  bottom:10%;
+  left:50%;
+  transform:translateX(-50%);
+  background-image:url('balance.png'); /* image d’une balance ou symbole d’égalité */
+  width:130px;
+  height:130px;
+  border-radius:50%;
+  background-size:cover;
+  background-position:center;
+  border:3px solid rgba(255,255,255,0.7);
+  box-shadow:0 6px 15px rgba(0,0,0,0.5);
+  animation:float 3.5s ease-in-out infinite;
+}
+
+#final .label{
+  position:absolute;
+  bottom:-28px;
+  width:100%;
+  text-align:center;
+  font-weight:bold;
+  text-shadow:2px 2px 4px #000;
+}
+
+  
 </style>
 </head>
 
@@ -134,6 +160,10 @@ p{
   <div class="label">Institution</div>
 </a>
 
+<div id="final" class="btn" onclick="location.href='final.html'">
+  <div class="label">Face-à-face final</div>
+</div>
+  
 <a href="public.html" class="role" id="public">
   <div class="label">Public</div>
 </a>
