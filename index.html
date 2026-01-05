@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* BASE */
 body{
   margin:0;
   height:100vh;
@@ -29,70 +28,41 @@ p{
   font-size:1.1em;
 }
 
-/* BOUTONS (liens sûrs) */
-.role{
+/* BOUTONS CIRCULAIRES */
+.btn{
   position:absolute;
   width:130px;
   height:130px;
   border-radius:50%;
   background-size:cover;
   background-position:center;
-  border:3px solid rgba(255,255,255,0.8);
+  border:3px solid rgba(255,255,255,0.7);
   box-shadow:0 6px 15px rgba(0,0,0,0.5);
+  cursor:pointer;
   animation:float 3.5s ease-in-out infinite;
   transition:transform .3s;
-  text-decoration:none;
-  z-index:10; /* 🔥 CLÉ */
 }
 
-.role:active,
-.role:hover{
+.btn:hover{
   transform:scale(1.15);
 }
 
 /* LABEL */
 .label{
   position:absolute;
-  bottom:-30px;
+  bottom:-28px;
   width:100%;
   text-align:center;
   font-weight:bold;
-  color:white;
   text-shadow:2px 2px 4px #000;
-  pointer-events:none;
 }
 
-/* POSITIONS */
-#sportive{
-  top:22%;
-  left:8%;
-  background-image:url('silhouette_sportive.png');
-}
-
-#media{
-  top:22%;
-  right:8%;
-  background-image:url('ballon_foot.png');
-}
-
-#championnes{
-  top:45%;
-  left:50%;
-  margin-left:-65px;
-  background-image:url('raquette_tennis.png');
-}
-
-#institution{
-  bottom:18%;
-  left:12%;
-  background-image:url('halteres.png');
-}
-
-#public{
-  bottom:18%;
-  right:12%;
-  background-image:url('gymnaste.png');
-}
+/* POSITIONS (ÉTOILE) */
+#sportive{top:22%;left:8%;background-image:url('silhouette_sportive.png');}
+#media{top:22%;right:8%;background-image:url('ballon_foot.png');}
+#palmares{top:45%;left:50%;transform:translateX(-50%);background-image:url('raquette_tennis.png');}
+#institution{bottom:18%;left:12%;background-image:url('halteres.png');}
+#public{bottom:18%;right:12%;background-image:url('gymnaste.png');}
 
 /* ANIMATION */
 @keyframes float{
@@ -101,27 +71,27 @@ p{
   100%{transform:translateY(0);}
 }
 
-/* IMAGE DE FOND */
+/* FOND DECORATIF */
 .bg{
   position:absolute;
   bottom:0;
   width:100%;
-  opacity:0.12;
+  opacity:.12;
   pointer-events:none;
-  z-index:1; /* 🔽 EN DESSOUS DES BOUTONS */
 }
 
- #finalBtn{
+/* BOUTON RECTANGLE FACE-À-FACE FINAL */
+#finalBtn{
   position:fixed;
-  bottom:20px;       /* 20px au-dessus du bas de l'écran */
+  bottom:20px;       
   left:50%;          
   transform:translateX(-50%);
-  padding:15px 40px; /* hauteur et largeur du bouton */
+  padding:15px 40px; 
   background-color:white;
   color:#c2185b;
   font-weight:bold;
   font-size:1.1em;
-  border-radius:25px; /* arrondi */
+  border-radius:25px; 
   border:none;
   cursor:pointer;
   box-shadow:0 6px 15px rgba(0,0,0,0.4);
@@ -134,7 +104,6 @@ p{
   transform:translateX(-50%) scale(1.05);
   background-color:#f8f8f8;
 }
-  
 </style>
 </head>
 
@@ -143,32 +112,32 @@ p{
 <h1>⚖️ Le match invisible</h1>
 <p>Choisis ton rôle</p>
 
-<a href="sportive.html" class="role" id="sportive">
+<div id="sportive" class="btn" onclick="location.href='sportive.html'">
   <div class="label">Sportive</div>
-</a>
-
-<a href="media.html" class="role" id="media">
-  <div class="label">Média</div>
-</a>
-
-<a href="championnes.html" class="role" id="championnes">
-  <div class="label">Championnes</div>
-</a>
-
-<a href="institution.html" class="role" id="institution">
-  <div class="label">Institution</div>
-</a>
-
-<div id="final" class="btn" onclick="location.href='final.html'">
-  <div class="label">Face-à-face final</div>
 </div>
-  
-<a href="public.html" class="role" id="public">
+
+<div id="media" class="btn" onclick="location.href='media.html'">
+  <div class="label">Média</div>
+</div>
+
+<div id="palmares" class="btn" onclick="location.href='palmares.html'">
+  <div class="label">Championnes</div>
+</div>
+
+<div id="institution" class="btn" onclick="location.href='institution.html'">
+  <div class="label">Institution</div>
+</div>
+
+<div id="public" class="btn" onclick="location.href='public.html'">
   <div class="label">Public</div>
-</a>
--->
+</div>
 
 <img src="fond_sport_feminin.png" class="bg">
+
+<!-- BOUTON RECTANGLE FACE-À-FACE FINAL -->
+<div id="finalBtn" onclick="location.href='final.html'">
+  Face-à-face final
+</div>
 
 </body>
 </html>
