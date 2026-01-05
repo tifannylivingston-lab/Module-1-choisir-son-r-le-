@@ -6,15 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-.card{
-  background:rgba(255,255,255,0.15);
-  border-radius:20px;
-  padding:15px;
-  cursor:pointer;
-  box-shadow:0 6px 15px rgba(0,0,0,0.4);
-  transition:transform .3s, background .3s;
-  position:relative;      /* 🔹 AJOUTÉ */
-  z-index:10;             /* 🔹 AJOUTÉ */
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(135deg,#512da8,#f06292);
+  font-family:Arial,sans-serif;
+  color:white;
+  text-align:center;
 }
 
 h1{
@@ -33,9 +31,11 @@ p{
   grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
   gap:20px;
   padding:20px;
+  position:relative; /* 🔹 important */
+  z-index:5;         /* 🔹 important */
 }
 
-/* CARTE */
+/* CARTE ENTIEREMENT CLICABLE */
 .card{
   background:rgba(255,255,255,0.15);
   border-radius:20px;
@@ -43,6 +43,13 @@ p{
   cursor:pointer;
   box-shadow:0 6px 15px rgba(0,0,0,0.4);
   transition:transform .3s, background .3s;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  z-index:10;   /* 🔹 AU-DESSUS DE TOUT */
 }
 
 .card:hover{
@@ -50,18 +57,21 @@ p{
   background:rgba(255,255,255,0.25);
 }
 
+/* AVATAR */
 .avatar{
   width:90px;
   height:90px;
   border-radius:50%;
   background:#fff;
-  margin:0 auto 10px;
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:2.2em;
+  margin-bottom:10px;
+  flex-shrink:0;
 }
 
+/* TEXTES */
 .name{
   font-weight:bold;
   margin-bottom:5px;
@@ -80,7 +90,7 @@ p{
   display:none;
   align-items:center;
   justify-content:center;
-  z-index:10;
+  z-index:20;
 }
 
 .popup-content{
@@ -150,7 +160,7 @@ p{
   </div>
 
   <div class="card" onclick="openPopup(3)">
-    <div class="avatar">🏀</div>
+    <div class="avatar">🏊‍♀️</div>
     <div class="name">Laure Manaudou</div>
     <div class="sport">Natation</div>
   </div>
@@ -179,5 +189,28 @@ function openPopup(id){
     },
     2:{
       title:"Megan Rapinoe",
-      text:"Championne du monde de football. Elle a attaqué sa propre fédération pour obtenir l’égalité salariale. Vict
+      text:"Championne du monde de football. Elle a attaqué sa propre fédération pour obtenir l’égalité salariale. Victoire historique en 2022."
+    },
+    3:{
+      title:"Laure Manaudou",
+      text:"Championne olympique française. Très médiatisée, mais aussi très critiquée, là où des hommes étaient félicités pour les mêmes choix."
+    },
+    4:{
+      title:"Simone Biles",
+      text:"La gymnaste la plus titrée de l’histoire. Elle a osé dire stop pour sa santé mentale, ouvrant un débat mondial dans le sport."
+    }
+  };
 
+  document.getElementById("popupContent").innerHTML=
+    "<h2>"+data[id].title+"</h2><p>"+data[id].text+"</p><a href='#' class='close' onclick='closePopup()'>Compris</a>";
+
+  document.getElementById("popup").style.display="flex";
+}
+
+function closePopup(){
+  document.getElementById("popup").style.display="none";
+}
+</script>
+
+</body>
+</html>
