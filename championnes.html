@@ -1,99 +1,181 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <title>Le match invisible – Championnes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
   margin:0;
+  min-height:100vh;
+  background:linear-gradient(135deg,#512da8,#f06292);
   font-family:Arial,sans-serif;
-  background:linear-gradient(180deg,#4a148c,#000);
   color:white;
   text-align:center;
 }
 
-/* Cartes et choix */
-.card{
-  background:rgba(255,255,255,0.12);
-  border-radius:16px;
-  padding:20px;
-  margin:30px auto;
-  max-width:500px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.6);
+h1{
+  margin:20px 10px 5px;
+  text-shadow:2px 2px 6px #000;
 }
-.choice{
-  display:block;
-  margin:12px auto;
-  padding:16px;
-  border-radius:14px;
-  background:rgba(255,255,255,0.2);
-  cursor:pointer;
-  font-size:1.2em;
-  max-width:300px;
-  transition:transform .2s, background .2s;
-  text-align:center;
-}
-.choice:hover{
-  background:rgba(255,255,255,0.35);
-  transform:scale(1.05);
-}
-.result{
-  display:none;
-  margin-top:10px;
+
+p{
+  margin:5px 15px 20px;
   font-size:1.1em;
 }
-.highlight{color:#ff80ab;font-weight:bold;}
 
-/* Bouton retour */
-#goBack{
-  position: fixed;
-  bottom: 20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#e91e63;
-  color:white;
-  padding:18px 26px;
-  border-radius:40px;
-  font-size:18px;
-  font-weight:bold;
+/* GRILLE */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:20px;
+  padding:20px;
+}
+
+/* CARTE */
+.card{
+  background:rgba(255,255,255,0.15);
+  border-radius:20px;
+  padding:15px;
   cursor:pointer;
-  z-index:3;
-  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+  box-shadow:0 6px 15px rgba(0,0,0,0.4);
+  transition:transform .3s, background .3s;
+}
+
+.card:hover{
+  transform:scale(1.05);
+  background:rgba(255,255,255,0.25);
+}
+
+.avatar{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:#fff;
+  margin:0 auto 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:2.2em;
+}
+
+.name{
+  font-weight:bold;
+  margin-bottom:5px;
+}
+
+.sport{
+  font-size:.9em;
+  opacity:.9;
+}
+
+/* POPUP */
+.popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:10;
+}
+
+.popup-content{
+  background:#fff;
+  color:#333;
+  max-width:420px;
+  width:90%;
+  border-radius:20px;
+  padding:20px;
+  text-align:left;
+  animation:pop .4s ease;
+}
+
+@keyframes pop{
+  from{transform:scale(.7);opacity:0;}
+  to{transform:scale(1);opacity:1;}
+}
+
+.popup h2{
+  margin-top:0;
+  color:#c2185b;
+}
+
+.close{
+  margin-top:15px;
+  display:block;
+  text-align:center;
+  padding:10px;
+  background:#c2185b;
+  color:white;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* BOUTON RETOUR */
+.back{
+  margin:20px auto 30px;
+  display:inline-block;
+  padding:12px 20px;
+  border-radius:30px;
+  background:white;
+  color:#c2185b;
+  font-weight:bold;
+  text-decoration:none;
 }
 </style>
 </head>
+
 <body>
 
-<div class="card">
 <h1>🏆 Le panthéon des championnes</h1>
-<p>Touche un portrait pour découvrir son palmarès et son combat personnel.</p>
+<p>Touche une sportive pour découvrir son parcours</p>
 
-<button class="choice" onclick="showFact('🎾 Serena Williams : 23 titres du Grand Chelem et bataille pour l’égalité salariale.')">Serena Williams</button>
-<button class="choice" onclick="showFact('⚽ Marta : meilleure buteuse de l’histoire du football féminin, multiple fois Ballon d’or.')">Marta</button>
-<button class="choice" onclick="showFact('🤸 Simone Biles : multiple championne olympique en gymnastique, a brisé les tabous autour de la santé mentale.')">Simone Biles</button>
-<button class="choice" onclick="showFact('🏀 Lisa Leslie : pionnière du basketball féminin américain et mentor de nouvelles générations.')">Lisa Leslie</button>
+<div class="grid">
 
-<div id="result" class="card result"></div>
+  <div class="card" onclick="openPopup(1)">
+    <div class="avatar">🎾</div>
+    <div class="name">Serena Williams</div>
+    <div class="sport">Tennis</div>
+  </div>
+
+  <div class="card" onclick="openPopup(2)">
+    <div class="avatar">⚽</div>
+    <div class="name">Megan Rapinoe</div>
+    <div class="sport">Football</div>
+  </div>
+
+  <div class="card" onclick="openPopup(3)">
+    <div class="avatar">🏀</div>
+    <div class="name">Laure Manaudou</div>
+    <div class="sport">Natation</div>
+  </div>
+
+  <div class="card" onclick="openPopup(4)">
+    <div class="avatar">🤸‍♀️</div>
+    <div class="name">Simone Biles</div>
+    <div class="sport">Gymnastique</div>
+  </div>
+
 </div>
 
-<!-- Bouton retour -->
-<button id="goBack" onclick="goBack()">⬅️ Retour aux rôles</button>
+<a href="index.html" class="back">⬅ Retour aux rôles</a>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-content" id="popupContent"></div>
+</div>
 
 <script>
-function showFact(text){
-  var f = document.getElementById('result');
-  f.innerHTML = '<p class="highlight">'+text+'</p>';
-  f.style.display='block';
-  // Scroll vers le résultat si nécessaire
-  f.scrollIntoView({behavior: "smooth"});
-}
+function openPopup(id){
+  const data={
+    1:{
+      title:"Serena Williams",
+      text:"23 titres du Grand Chelem. Malgré son palmarès exceptionnel, elle a longtemps gagné moins que des joueurs masculins moins titrés. Elle s’est battue publiquement pour l’égalité des primes."
+    },
+    2:{
+      title:"Megan Rapinoe",
+      text:"Championne du monde de football. Elle a attaqué sa propre fédération pour obtenir l’égalité salariale. Vict
 
-function goBack(){
-  window.location.href="index.html";
-}
-</script>
-
-</body>
-</html>
