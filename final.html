@@ -27,28 +27,30 @@ h1{
 }
 
 .box{
-  background:rgba(0,0,0,0.4);
+  background:rgba(0,0,0,0.45);
   border-radius:20px;
   padding:25px;
   box-shadow:0 6px 15px rgba(0,0,0,0.4);
-  margin-top:30px;
+  margin-top:25px;
 }
 
-.choices button{
+.choiceBtn{
   display:block;
   width:100%;
   margin:10px 0;
-  padding:14px;
+  padding:15px;
   border-radius:25px;
   border:none;
   cursor:pointer;
   font-size:1.05em;
   font-weight:bold;
+  background:#ffffff;
+  color:#c2185b;
 }
 
-.good{background:#4caf50;color:white;}
-.mid{background:#ffb300;color:black;}
-.bad{background:#e53935;color:white;}
+.choiceBtn:hover{
+  transform:scale(1.02);
+}
 
 #feedback{
   display:none;
@@ -64,13 +66,33 @@ h1{
   border-radius:25px;
   border:none;
   cursor:pointer;
-  background:white;
-  color:#c2185b;
+  background:#ffeb3b;
+  color:#000;
   font-weight:bold;
 }
 
-.progress{
+/* BARRE DE SCORE */
+.scoreBox{
   margin-top:15px;
+}
+
+.scoreBar{
+  width:100%;
+  height:18px;
+  background:rgba(255,255,255,0.3);
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.scoreFill{
+  height:100%;
+  width:0%;
+  background:#4caf50;
+  transition:width 0.4s ease;
+}
+
+.progress{
+  margin-top:8px;
   font-size:0.9em;
   opacity:0.8;
 }
@@ -85,9 +107,17 @@ h1{
 <p>Même sport. Même niveau. Pas les mêmes moyens.</p>
 
 <div class="box">
+
+  <!-- SCORE VISUEL -->
+  <div class="scoreBox">
+    <div class="scoreBar">
+      <div class="scoreFill" id="scoreFill"></div>
+    </div>
+  </div>
+
   <h2 id="question"></h2>
 
-  <div class="choices" id="choices"></div>
+  <div id="choices"></div>
 
   <div id="feedback"></div>
 
@@ -102,92 +132,62 @@ h1{
 const quiz = [
   {
     q:"💰 À ton avis, le salaire des sportives est :",
-    a:[
-      ["À peu près égal",0],
-      ["Un peu moins élevé",0],
-      ["Beaucoup moins élevé",1]
-    ],
-    info:"Dans certains sports, l’écart peut aller jusqu’à 10 à 20 fois."
+    a:["À peu près égal","Un peu moins élevé","Beaucoup moins élevé"],
+    correct:2,
+    info:"Dans certains sports, les sportives gagnent jusqu’à 10 à 20 fois moins."
   },
   {
     q:"📺 Le temps d’antenne du sport féminin est :",
-    a:[
-      ["Équivalent",0],
-      ["Un peu inférieur",0],
-      ["Très inférieur",1]
-    ],
+    a:["Équivalent","Un peu inférieur","Très inférieur"],
+    correct:2,
     info:"Moins de 15 % du sport diffusé concerne des femmes."
   },
   {
     q:"🏟️ Les budgets des clubs féminins sont :",
-    a:[
-      ["Similaires",0],
-      ["Légèrement plus bas",0],
-      ["Beaucoup plus bas",1]
-    ],
+    a:["Similaires","Légèrement plus bas","Beaucoup plus bas"],
+    correct:2,
     info:"Les moyens financiers conditionnent performance et visibilité."
   },
   {
     q:"👥 Le nombre de sponsors est :",
-    a:[
-      ["Identique",0],
-      ["Un peu moindre",0],
-      ["Beaucoup plus faible",1]
-    ],
+    a:["Identique","Un peu moindre","Beaucoup plus faible"],
+    correct:2,
     info:"Moins de visibilité = moins de partenaires."
   },
   {
     q:"📰 Les médias parlent du sport féminin :",
-    a:[
-      ["Autant que du masculin",0],
-      ["Parfois",0],
-      ["Très rarement",1]
-    ],
+    a:["Autant que du masculin","Parfois","Très rarement"],
+    correct:2,
     info:"Ce qui n’est pas montré semble ne pas exister."
   },
   {
     q:"🏆 Les primes de victoire sont :",
-    a:[
-      ["Identiques",0],
-      ["Parfois équitables",0],
-      ["Souvent inégales",1]
-    ],
+    a:["Identiques","Parfois équitables","Souvent inégales"],
+    correct:2,
     info:"L’égalité des primes est encore récente et rare."
   },
   {
-    q:"🧒 L’accès des filles au sport est :",
-    a:[
-      ["Évident",0],
-      ["Parfois compliqué",0],
-      ["Souvent limité",1]
-    ],
-    info:"Moins d’encouragement = moins de pratique."
+    q:"🧒 Les filles ont accès au sport localement :",
+    a:["Aussi facilement que les garçons","Avec quelques obstacles","Avec de vraies difficultés"],
+    correct:2,
+    info:"Dans de nombreux territoires, l’offre est encore limitée pour les filles."
   },
   {
     q:"👟 Le matériel et les infrastructures sont :",
-    a:[
-      ["Les mêmes",0],
-      ["Presque les mêmes",0],
-      ["Souvent inférieurs",1]
-    ],
+    a:["Les mêmes","Presque les mêmes","Souvent inférieurs"],
+    correct:2,
     info:"Les conditions d’entraînement comptent énormément."
   },
   {
-    q:"📊 La reconnaissance du public est :",
-    a:[
-      ["Identique",0],
-      ["En progression",0],
-      ["Encore insuffisante",1]
-    ],
-    info:"Les mentalités évoluent… mais lentement."
+    q:"📍 Dans ta commune / ton collège, le sport féminin est :",
+    a:["Très visible","Parfois mis en avant","Peu valorisé"],
+    correct:2,
+    info:"La visibilité locale joue un rôle clé dans l’égalité."
   },
   {
     q:"⚖️ Ces inégalités sont dues :",
-    a:[
-      ["Au manque de talent",0],
-      ["À des choix individuels",0],
-      ["À un système historique",1]
-    ],
+    a:["Au manque de talent","À des choix individuels","À un système historique"],
+    correct:2,
     info:"Ce n’est pas individuel. C’est structurel."
   }
 ];
@@ -201,20 +201,25 @@ function loadQuestion(){
   document.getElementById("choices").innerHTML = "";
   document.getElementById("feedback").style.display="none";
   document.getElementById("nextBtn").style.display="none";
-  document.getElementById("progress").innerText = 
+
+  document.getElementById("progress").innerText =
     "Question " + (current+1) + " / " + quiz.length;
 
-  q.a.forEach(choice=>{
+  q.a.forEach((text, index)=>{
     const btn = document.createElement("button");
-    btn.className = choice[1] ? "bad" : "mid";
-    btn.innerText = choice[0];
-    btn.onclick = ()=>answer(choice[1], q.info);
+    btn.className = "choiceBtn";
+    btn.innerText = text;
+    btn.onclick = ()=>answer(index === q.correct, q.info);
     document.getElementById("choices").appendChild(btn);
   });
 }
 
 function answer(correct, info){
-  if(correct) score++;
+  if(correct){
+    score++;
+    document.getElementById("scoreFill").style.width =
+      (score / quiz.length * 100) + "%";
+  }
   document.getElementById("feedback").style.display="block";
   document.getElementById("feedback").innerHTML =
     "<strong>📊 Réalité :</strong><br>"+info;
@@ -233,7 +238,10 @@ function nextQuestion(){
 function showResult(){
   document.querySelector(".box").innerHTML = `
     <h2>🎯 Résultat final</h2>
-    <p>Score de prise de conscience :</p>
+    <div class="scoreBar">
+      <div class="scoreFill" style="width:${score/quiz.length*100}%"></div>
+    </div>
+
     <h1>${score} / ${quiz.length}</h1>
 
     <p>
@@ -244,7 +252,7 @@ function showResult(){
 
     <p style="margin-top:20px;">
       Le match invisible existe.<br>
-      Mais le comprendre, c’est déjà agir.
+      Le comprendre, c’est déjà agir.
     </p>
   `;
 }
